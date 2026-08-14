@@ -4,7 +4,7 @@
 
 `guofeng-director` 是一套「古风国漫视觉导演」AI Agent Skill，用于生成结构化、可审计、可直接复制使用的图像提示词。
 
-它参考了 `xianxia-visual-director` 的规则驱动架构，但重点从“环境巨构仙侠”转向“角色清晰、参考图一致、双人互动稳定、古风国漫画面可控”。
+它面向古风国漫画面创作，重点解决角色清晰、参考图一致、双人互动稳定、风格路由明确和提示词结构可审计的问题。
 
 ## 项目定位
 
@@ -25,9 +25,9 @@
 - 输出结构固定，便于审计和复用。
 - 兼容 Codex、Claude、Grok、Kimi、MiniMax、Seedance、Workbuddy、Catpaw 等平台。
 
-## 与 xianxia-visual-director 的关系
+## 设计特点
 
-本项目保留了原 Skill 的优点：
+本项目采用规则驱动的视觉导演流程：
 
 - Required loading order。
 - Parameter lock。
@@ -35,7 +35,7 @@
 - Structured output。
 - Final audit before response。
 
-主要改造点：
+核心设计重点：
 
 - 将“人物清晰度”提升为共享总则。
 - 正面或三分之二正面人物成为高优先级角色的默认方向。

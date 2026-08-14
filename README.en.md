@@ -4,7 +4,7 @@
 
 `guofeng-director` is an AI Agent Skill for directing Chinese guofeng donghua image prompts. It produces structured, auditable, copy-ready prompts for character-forward ancient Chinese fantasy visuals.
 
-The project adapts the rule-driven architecture of `xianxia-visual-director`, but shifts the focus from environment-first celestial scale to clear characters, stable reference-image identity, reliable two-person interaction, and controllable guofeng animation aesthetics.
+It is designed for guofeng donghua visual creation, with emphasis on clear characters, stable reference-image identity, reliable two-person interaction, explicit style routing, and auditable prompt structure.
 
 ## Positioning
 
@@ -25,9 +25,9 @@ This Skill supports three visual routes:
 - Produces structured outputs for easy auditing and reuse.
 - Works with Codex, Claude, Grok, Kimi, MiniMax, Seedance, Workbuddy, Catpaw, and similar platforms.
 
-## Relationship To xianxia-visual-director
+## Design
 
-This project keeps the original strengths:
+This project uses a rule-driven visual direction workflow:
 
 - Required loading order.
 - Parameter lock.
@@ -35,7 +35,7 @@ This project keeps the original strengths:
 - Structured output.
 - Final audit before response.
 
-Major changes:
+Core design priorities:
 
 - Character clarity is promoted to a master rule.
 - Front-facing or three-quarter front faces are the default for high-priority people.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "古风国漫视觉导演"
+  short_description: "生成角色清晰、风格可控的古风国漫提示词"
+  default_prompt: "使用 $guofeng-director 将我的古风国漫场景构想扩展为结构化视觉导演提示词。"

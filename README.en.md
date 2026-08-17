@@ -105,6 +105,33 @@ Example request:
 输出：标准结构化提示词
 ```
 
+## Generation Workflow: Director + Renderer
+
+This Skill is the **director** — it turns an idea into a structured prompt. Producing the actual picture is the **renderer's** job. Platforms fall into two groups:
+
+- **Conversational platforms (LLM / Agent)**: Claude, Codex, Doubao, Grok, Kimi, Tongyi Qianwen, etc. — can load this Skill as the director and output prompts.
+- **Image models (renderer)**: Jimeng, Tongyi Wanxiang, Midjourney, Stable Diffusion, etc. — only render a prompt into an image.
+- **Doubao and Grok do both**, so a single conversation can direct and render in one step.
+
+### One-step generation in Doubao (recommended)
+
+1. Open Doubao (Mac / mobile app, or `doubao.com`) and start a new conversation.
+2. First message: paste the full [SYSTEM_PROMPT.md](SYSTEM_PROMPT.md). It affects only this conversation and nothing else; for long-term reuse, create a custom bot and set this content as its persona so you never re-paste it.
+3. Second message: describe the scene in the parameter format, e.g.:
+
+```text
+风格路由：逆仙黑暗
+人物优先级：高
+画幅比例：16:9
+人物：黑衣男 + 白衣女，正面牵手
+场景：崩塌的巨型天门前，雷劫撕裂苍穹
+```
+
+4. After Doubao returns the complete prompt and negative constraints, send: `根据完整提示词直接生成图片` (generate the image directly from the complete prompt).
+5. Keep refining in natural language: `换竖版` (vertical), `脸再清晰一点` (clearer face), `换一个机位` (new camera angle).
+
+> For renderer-only platforms (Jimeng / Tongyi Wanxiang / MJ / SD): paste the complete prompt into the positive field and the negative constraints into the negative field; on platforms without a negative field, append the negatives as an `avoid: ...` line after the positive prompt.
+
 ## Standard Output
 
 The Skill normally returns:

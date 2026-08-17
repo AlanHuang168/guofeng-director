@@ -52,6 +52,10 @@
 
 ![逆仙黑暗 · 双人牵手走向崩塌天门](assets/demo/nixian-dark-couple-gate.jpg)
 
+下图为按「[生图工作流：导演 + 画师](#生图工作流导演--画师)」在豆包实测生成（图中「豆包AI生成」为平台水印）：
+
+![豆包实测 · 逆仙黑暗双人对视牵手](assets/demo/doubao-nixian-dark-couple.jpg)
+
 > `斗破热血` 与 `古风国漫通用` 路由的示例图后续补充。
 
 ## 目录结构

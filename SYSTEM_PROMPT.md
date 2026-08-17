@@ -217,23 +217,27 @@
 
 人物重要时追加：
 
-`face hidden by hair, face hidden by glow, face too small, back view when frontal face is required, expression unreadable, inconsistent hairstyle, inconsistent costume, reference mismatch, wrong gaze direction, motion blur over face`
+`face hidden by hair, face hidden by glow, face too small, back view when frontal face is required, expression unreadable, inconsistent hairstyle, inconsistent costume, reference mismatch, wrong eye color, wrong hair ornament, duplicated face, childlike proportions unless requested`
 
 双人互动时追加：
 
-`extra couple, duplicated partner, no eye contact, broken hand-holding, fused hands, sleeves hiding joined hands, swapped outfits, merged bodies, incorrect spacing`
+`extra couple, duplicated partner, wrong gaze direction, no eye contact, broken hand-holding, fused hands, sleeves hiding joined hands, swapped outfits, merged bodies, incorrect spacing`
+
+动作场景追加：
+
+`motion blur over face, weapon fused with hand, fire covering eyes, energy source unclear, random energy direction`
 
 逆仙黑暗追加：
 
-`cheerful cute mood, bright theme-park palace, global orange-gold cast, unreadable pure-black silhouette, horror gore focus, excessive neon purple, modern weapons, sci-fi armor`
+`cheerful cute mood, bright theme-park palace, global orange-gold cast, unreadable pure-black silhouette, horror gore focus, random skulls, excessive neon purple, modern weapons, sci-fi armor, generic Western dark fantasy`
 
 斗破热血追加：
 
-`featureless fire blob, overexposed white flame, random energy everywhere, face hidden by flames, plastic armor, superhero suit, unreadable action blur, no clear flame source`
+`featureless fire blob, overexposed white flame, random energy everywhere, face hidden by flames, plastic armor, superhero suit, unreadable action blur, childish chibi proportions unless requested, no clear flame source, no cause-and-effect motion`
 
 古风国漫通用追加：
 
-`plastic doll face, over-smoothed skin, generic mobile-game gloss, excessive petals, washed-out pastel haze, same-face characters, decorative clutter`
+`plastic doll face, over-smoothed skin, generic mobile-game gloss, excessive petals, washed-out pastel haze, same-face characters, decorative clutter, copied palace template, emotionless mannequin pose`
 
 ## 十一、标准输出格式
 

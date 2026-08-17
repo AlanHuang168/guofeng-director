@@ -7,13 +7,22 @@ description: Generate, derive, optimize, and diagnose structured AI image prompt
 
 Turn a short character or scene idea into a coherent, auditable guofeng donghua visual direction. Preserve character clarity and emotional intent while routing the scene through one controlled visual style.
 
-## Required loading order
+## Loading policy
 
-1. Read [references/master-rules.md](references/master-rules.md) for every create, derive, optimize, diagnose, variants, or direct-image task. Treat it as the controlling shared rule.
-2. Read [references/character-rules.md](references/character-rules.md) whenever any person, face, identity, reference image, costume, expression, pose, or two-person interaction is present or implied.
-3. Read [references/style-routes.md](references/style-routes.md) for every task and apply exactly one style route: `逆仙黑暗`, `斗破热血`, or `古风国漫通用`.
-4. Read [references/composition-light.md](references/composition-light.md) whenever designing or changing ratio, camera, figure size, composition, palette, lighting, action, atmosphere, or cinematic rendering.
-5. Read [references/negative.md](references/negative.md) before writing final negative constraints or diagnosing failures.
+Load only the references a task needs. Do not read every file for every request.
+
+**Always load (all modes):**
+
+1. [references/master-rules.md](references/master-rules.md) — the controlling shared rule for create, derive, optimize, diagnose, variants, and direct-image tasks.
+2. [references/style-routes.md](references/style-routes.md) — every task applies exactly one style route: `逆仙黑暗`, `斗破热血`, or `古风国漫通用`.
+
+**Load on demand (only when the trigger applies):**
+
+3. [references/character-rules.md](references/character-rules.md) — whenever any person, face, identity, reference image, costume, expression, pose, or two-person interaction is present or implied. Skip for environment-only scenes with no identity-critical figures.
+4. [references/composition-light.md](references/composition-light.md) — whenever designing or changing ratio, camera, figure size, composition, palette, lighting, action, atmosphere, or cinematic rendering. A full structured prompt normally needs this; a pure wording-level optimize may not.
+5. [references/negative.md](references/negative.md) — before writing final negative constraints or diagnosing failures. Any output that includes a `负面约束` block needs this.
+
+For **diagnose** tasks, load the reference matching the reported symptom (e.g. identity drift → character-rules; muddy shadows or route contamination → composition-light and negative) rather than all four subsystem files.
 
 ## Operating modes
 
@@ -36,7 +45,7 @@ Record explicit inputs before directing the scene. Do not silently replace them.
 - `参考图状态`: one of `无参考图`, `单人参考图`, `双人参考图`, `多参考图`; record which identity, costume, hairstyle, color, or prop each reference controls.
 - `人物数量`: `0`, `1`, `2`, or `多人`; record role labels instead of vague group names.
 - `人物可见性`: one of `正面清晰`, `三分之二正面`, `侧面`, `背影`, `剪影`; for `人物优先级：高`, default to `正面清晰` or `三分之二正面` unless the user explicitly asks otherwise.
-- `人物占比`: infer from priority and ratio. High priority commonly uses a readable 18–35% frame-height subject; medium uses 8–18%; low uses 1–8%. For two people, record each person's readable scale and spacing.
+- `人物占比`: infer from priority and ratio; see [references/character-rules.md](references/character-rules.md) for per-level frame-height ranges. For two people, record each person's readable scale and spacing.
 - `互动关系`: one of `无`, `牵手`, `对视`, `并肩`, `护持`, `对峙`, `拥抱`, `交错动作`, or user-specified. If two people interact, lock hand contact, gaze line, body orientation, distance, and emotional direction.
 - `镜头意图`: one of `角色正面`, `双人情绪`, `战斗爆发`, `巨物压迫`, `环境叙事`, `电影海报`; infer from the user's priority.
 - `机位与镜头`: record camera height, viewing distance, tilt, focal length, depth of field, and whether faces are the focus. Never treat `大全景` as permission to make faces unreadable when `人物优先级` is high.
@@ -70,23 +79,16 @@ If defaults are needed, state them explicitly, such as `画幅比例：16:9（�
 
 ## Style-route selection
 
-- Select `逆仙黑暗` for cold xianxia, lonely cultivators, fate rebellion, heavenly calamity, oppressive giant structures, ruined celestial gates, black-red-white contrast, thunder, blood mist, or tragic romance under pressure.
-- Select `斗破热血` for youthful protagonists, fighting spirit, fire, alchemy flame, desert or academy battle energy, dynamic combat, rising power, warm-cool energy contrast, and explosive movement.
-- Select `古风国漫通用` for elegant guofeng fantasy, clear emotional portraits, immortal romance, palace gardens, clean magical atmosphere, luminous color, gentle action, and broadly cinematic donghua style.
-- Do not blend routes equally. If the user requests a hybrid, name the primary route and add one secondary accent without changing the locked route.
-- Avoid copyrighted artist-name imitation. For named franchises or characters, describe visible style traits and use user-provided references only when they are authorized by the user.
+Select exactly one route. Route triggers, hybrid handling, and the copyright/artist-imitation rule live in [references/style-routes.md](references/style-routes.md) (always loaded). For a hybrid request, name the primary route and add only one secondary accent without changing the locked route.
 
-## Character priority rules
+## Character priority
 
-- `高`: character identity, face, expression, hand pose, and costume silhouette outrank background spectacle. Use portrait, half-body, three-quarter, full-body poster, or close environmental framing. Keep both eyes, nose bridge, mouth, and face contour readable unless deliberately side-facing.
-- `中`: character and environment share attention. Use readable full body or knees-up framing, strong costume shape, readable expression, and a complete scene anchor.
-- `低`: environment, scale, or atmosphere leads. Figures may become small scale markers, but identity-critical references still require enough readable silhouette, costume color, and face direction to avoid drift.
-- Character priority controls figure scale; it does not delete route mood, composition, or cinematic light.
+`人物优先级` controls figure scale and framing only — it never deletes route mood, composition, or cinematic light. Keep high-priority faces readable even in epic or environment-led scenes. Per-level framing and frame-height ranges live in [references/character-rules.md](references/character-rules.md).
 
 ## Platform compatibility
 
 - Write platform-neutral prompts by default. Avoid unknown engine flags, sampler names, or proprietary syntax unless the user provides them.
-- For Codex and Claude Skill use, follow this `SKILL.md` loading order.
+- For Codex and Claude Skill use, follow this `SKILL.md` loading policy.
 - For Kimi, MiniMax, Seedance, Workbuddy, Catpaw, and Grok, use `SYSTEM_PROMPT.md` as the full system prompt.
 - For image models with reference images, use plain instructions such as `use reference image A for character 1 identity and costume; use reference image B for character 2 identity and costume` unless the platform has a known reference syntax supplied by the user.
 

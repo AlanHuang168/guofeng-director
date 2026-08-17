@@ -29,7 +29,7 @@ This Skill supports three visual routes:
 
 This project uses a rule-driven visual direction workflow:
 
-- Required loading order.
+- Conditional reference loading.
 - Parameter lock.
 - Route-based rule inheritance.
 - Structured output.
@@ -46,22 +46,13 @@ Core design priorities:
 
 ## Demo Images
 
-Demo images can be added later, for example:
+`逆仙黑暗` (dark xianxia) route examples: clear frontal faces, stable hand-holding interaction, a collapsing giant heavenly gate under thunder calamity, cold blue-gray palette with a small blood-red accent.
 
-```text
-assets/demo/
-├── nixian-dark-example.png
-├── battle-flame-example.png
-└── guofeng-romance-example.png
-```
+![Dark xianxia · frontal hand-holding poster](assets/demo/nixian-dark-couple-frontal.jpg)
 
-Then embed them in this section:
+![Dark xianxia · couple walking toward the ruined gate](assets/demo/nixian-dark-couple-gate.jpg)
 
-```markdown
-![Dark xianxia example](assets/demo/nixian-dark-example.png)
-![Flame action example](assets/demo/battle-flame-example.png)
-![General guofeng example](assets/demo/guofeng-romance-example.png)
-```
+> `斗破热血` and `古风国漫通用` route examples will be added later.
 
 ## Layout
 
@@ -75,6 +66,8 @@ guofeng-director/
 │   └── demo/
 ├── agents/
 │   └── openai.yaml
+├── scripts/
+│   └── check-sync.sh
 └── references/
     ├── master-rules.md
     ├── style-routes.md
@@ -123,6 +116,19 @@ The Skill normally returns:
 5. `可衍生方向`
 
 Use `只要提示词` for a shorter response containing only the complete prompt and negative constraints.
+
+## Maintenance: rule source of truth
+
+The rules live on two surfaces that must not drift apart:
+
+- `references/*.md` — the **source of truth** (detailed, English), loaded by the Skill on demand per `SKILL.md`.
+- [SYSTEM_PROMPT.md](SYSTEM_PROMPT.md) — a **derived, condensed Chinese port** for platforms that cannot load files.
+
+When you change a rule, update `references/` first, then reflect it in `SYSTEM_PROMPT.md`. The negative-constraint blocks are language-neutral and must stay byte-identical across both files. Run the drift checker before committing:
+
+```bash
+scripts/check-sync.sh
+```
 
 ## License
 

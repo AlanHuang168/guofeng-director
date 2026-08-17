@@ -29,7 +29,7 @@
 
 本项目采用规则驱动的视觉导演流程：
 
-- Required loading order。
+- 按需加载 references（Conditional reference loading）。
 - Parameter lock。
 - Route-based rule inheritance。
 - Structured output。
@@ -46,22 +46,13 @@
 
 ## 演示图
 
-后续可以把演示图放到仓库中，例如：
+以下为 `逆仙黑暗` 路由示例：双人正面清晰、牵手互动稳定、崩塌巨型天门与雷劫压迫，冷蓝灰主色配少量血红点睛。
 
-```text
-assets/demo/
-├── nixian-dark-example.png
-├── battle-flame-example.png
-└── guofeng-romance-example.png
-```
+![逆仙黑暗 · 双人正面牵手海报](assets/demo/nixian-dark-couple-frontal.jpg)
 
-图片加入后，可在本节替换为：
+![逆仙黑暗 · 双人牵手走向崩塌天门](assets/demo/nixian-dark-couple-gate.jpg)
 
-```markdown
-![逆仙黑暗示例](assets/demo/nixian-dark-example.png)
-![斗破热血示例](assets/demo/battle-flame-example.png)
-![古风国漫通用示例](assets/demo/guofeng-romance-example.png)
-```
+> `斗破热血` 与 `古风国漫通用` 路由的示例图后续补充。
 
 ## 目录结构
 
@@ -75,6 +66,8 @@ guofeng-director/
 │   └── demo/
 ├── agents/
 │   └── openai.yaml
+├── scripts/
+│   └── check-sync.sh
 └── references/
     ├── master-rules.md
     ├── style-routes.md
@@ -123,6 +116,19 @@ Kimi、MiniMax、Seedance、Workbuddy、Catpaw、Grok 等平台可直接复制 [
 5. `可衍生方向`
 
 如果只需要提示词，可在请求中写 `只要提示词`。
+
+## 维护说明：规则真源
+
+规则存在两个必须保持一致的载体：
+
+- `references/*.md`：**规则真源**（英文、详细），由 Skill 按 `SKILL.md` 的加载策略按需加载。
+- [SYSTEM_PROMPT.md](SYSTEM_PROMPT.md)：**派生的中文压缩版**，供无法加载文件的平台整段粘贴使用。
+
+修改规则时，先改 `references/`，再同步到 `SYSTEM_PROMPT.md`。其中负面约束字段是语言中立的，两个文件必须逐字一致。提交前运行漂移校验脚本：
+
+```bash
+scripts/check-sync.sh
+```
 
 ## 开源协议
 

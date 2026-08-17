@@ -52,9 +52,11 @@ Core design priorities:
 
 ![Dark xianxia · couple walking toward the ruined gate](assets/demo/nixian-dark-couple-gate.jpg)
 
-The image below was generated end-to-end in Doubao via the [Director + Renderer workflow](#generation-workflow-director--renderer) (the "豆包AI生成" mark is Doubao's own watermark):
+The images below were generated end-to-end on different platforms via the [Director + Renderer workflow](#generation-workflow-director--renderer) (the watermarks belong to each platform):
 
 ![Doubao result · dark xianxia couple, mutual gaze and hand-holding](assets/demo/doubao-nixian-dark-couple.jpg)
+
+![Tongyi Wanxiang result · dark xianxia couple, mutual gaze and hand-holding](assets/demo/wanxiang-nixian-dark-couple.jpg)
 
 > `斗破热血` and `古风国漫通用` route examples will be added later.
 
@@ -133,6 +135,10 @@ This Skill is the **director** — it turns an idea into a structured prompt. Pr
 
 4. After Doubao returns the complete prompt and negative constraints, send: `根据完整提示词直接生成图片` (generate the image directly from the complete prompt).
 5. Keep refining in natural language: `换竖版` (vertical), `脸再清晰一点` (clearer face), `换一个机位` (new camera angle).
+
+On a conversational platform, one turn returns the complete prompt, negative constraints, and derivable directions, then generates the image — as illustrated below:
+
+![Operation example · structured output and generation on a conversational platform](assets/demo/chatgpt-1.png)
 
 > For renderer-only platforms (Jimeng / Tongyi Wanxiang / MJ / SD): paste the complete prompt into the positive field and the negative constraints into the negative field; on platforms without a negative field, append the negatives as an `avoid: ...` line after the positive prompt.
 
